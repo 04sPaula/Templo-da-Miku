@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Doações para Hatsune Miku</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Santuário para Hatsune Miku </h1>
+    <p>Nossa Deusa Hatsune Miku ainda não conta com um Santuário
+        oficial e, por isso, estamos arrecadando quantias de
+        dinheiro para a construção do templo sagrado, bem como
+        para a compra de itens da vossa graça, como figures action
+        para a ambientação. <br> Segue o formulário de registro das
+        doações dos fieis.
+    </p>
+    <form id="doacaoForm">
+        <label for="nomeDoador">Nome do Doador:</label>
+        <input type="text" id="nomeDoador" placeholder="Digite seu nome" required>
+    
+        <label for="valorDoacao">Valor da Doação:</label>
+        <input type="number" id="valorDoacao" placeholder="Digite o valor" min="1" step="0.01" required>
+    
+        <label for="modoPagamento">Modo de Pagamento:</label>
+        <select id="modoPagamento" required>
+            <option value="">Selecione o Modo de Pagamento</option>
+            <option value="Cartao">Cartão</option>
+            <option value="Pix">Pix</option>
+            <option value="Especie">Espécie</option>
+            <option value="Boleto">Boleto</option>
+        </select>
+    
+        <button type="submit">Registrar Doação</button>
+    </form>
+    
+
+    <h3>Histórico de Doações</h2>
+    <table id="tabelaDoacoes">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Doador</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Modo Pagamento</th>
+            </tr>
+        </thead>
+        <tbody id="corpoTabelaDoacoes"></tbody>
+    </table>
+
+</body>
+</html>
