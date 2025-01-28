@@ -4,10 +4,36 @@
     <meta charset="UTF-8">
     <title>Doações para Hatsune Miku</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="script.js" defer></script>
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { Timestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDwfONqJ5P9qkuwBS9YML7MlROKJtVRTFE",
+            authDomain: "mikuproject-658c7.firebaseapp.com",
+            projectId: "mikuproject-658c7",
+            storageBucket: "mikuproject-658c7.firebasestorage.app",
+            messagingSenderId: "612426051624",
+            appId: "1:612426051624:web:b34242b63896d7817bc51d",
+            measurementId: "G-384C1RF60E"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.db = db;
+        window.collection = collection;
+        window.addDoc = addDoc;
+        window.Timestamp = Timestamp;
+        window.onSnapshot = onSnapshot;
+        window.orderBy = orderBy;
+        window.query = query;
+    </script>
+    <script src="script.js" type="module"></script>
+
 </head>
 <body>
     <h1>Santuário para Hatsune Miku </h1>
