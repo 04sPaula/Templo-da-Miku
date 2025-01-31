@@ -1,100 +1,197 @@
+/* Updated CSS with improved design and layout */
 @font-face {
     font-family: 'Zeniq';
     src: url(resources/Zeniq.ttf);
-  }
-
-body { 
-    font-family: Raleway;
-    margin: 0; 
-    padding: 0; 
-    background-color: rgb(9, 10, 10);
-    color:#ebebeb
 }
 
-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-}
-
-th, td, p { 
-    border: 1px solid #ddd; 
-    padding: 8px; 
-    text-align: left;
-    font-size: 0.85rem;
-}
- form{
-    margin: 0 32px;
- }
-
-input, select { 
-    width: 100%; 
-    padding: 5px; 
-    margin: 5px 0; 
-    background-color: rgb(102, 102, 102);
-}
-
-h2 {
-    font-family: Zeniq;
+body {
+    font-family: Raleway, sans-serif;
     margin: 0;
-}
-
-h3 {
-    padding-top: 1.25rem;
+    padding: 0;
+    background-color: rgb(9, 10, 10);
+    color: #ebebeb;
+    line-height: 1.6;
 }
 
 .bg-image {
-    background-image:url(resources/banner.jpg);
+    background-image: url(resources/banner.jpg);
     background-position: center;
+    background-size: cover;
+	background-attachment: fixed;
     min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+	margin-bottom: 160px;
+}
+
+.bg-image > div:first-child {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.field {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	width: 300px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: absolute;
+    bottom: 2rem;
 }
 
 .mouse {
-	width: 28px;
-	height: 48px;
-	border: 2.5px solid #f5f5f5;
-	border-radius: 60px;
-	position: relative;
-	&::before {
-		content: '';
-		width: 12px;
-		height: 12px;
-		position: absolute;
-		top: 5px;
-		left: 50%;
-		transform: translateX(-50%);
-		background-color: #ebebeb;
-		border-radius: 50%;
-		opacity: 1;
-		animation: wheel 2s infinite;
-		-webkit-animation: wheel 2s infinite;
-	}
+    width: 28px;
+    height: 48px;
+    border: 2.5px solid #f5f5f5;
+    border-radius: 60px;
+    position: relative;
+}
+
+.mouse::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ebebeb;
+    border-radius: 50%;
+    opacity: 1;
+    animation: wheel 2s infinite;
 }
 
 @keyframes wheel {
-	to {
-		opacity: 0;
-		top: 32px;
-	}
+    to {
+        opacity: 0;
+        top: 32px;
+    }
 }
 
-@-webkit-keyframes wheel {
-	to {
-		opacity: 0;
-		top: 60px;
-	}
+.bg-image h2 {
+    font-family: Zeniq;
+    margin: 2rem 0;
+    z-index: 3;
+    position: relative;
+    text-align: center;
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.bg-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+h1 {
+    text-align: center;
+    color: #00ffff;
+    margin: 2rem 0;
+}
+
+p {
+    text-align: justify;
+    margin: 1rem 0;
+    line-height: 1.7;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 0.5rem 0;
+    background-color: rgb(45, 45, 45);
+    border: 1px solid #555;
+    color: #ebebeb;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #00ffff;
+}
+
+button {
+    background-color: #00ffff;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00cccc;
+}
+
+table {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    border-collapse: collapse;
+	margin-bottom: 80px;
+}
+
+th, td {
+    border: 1px solid #333;
+    padding: 12px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+th {
+    background-color: #222;
+    color: #00ffff;
+}
+
+.mouse {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 600px) {
+    .bg-image h2 {
+        font-size: 2rem;
+    }
+
+    form, table {
+        width: 95%;
+        margin: 1rem auto;
+    }
 }
