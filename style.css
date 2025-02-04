@@ -13,6 +13,102 @@ body {
     line-height: 1.6;
 }
 
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.nav-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #00ffff;
+}
+
+.doadores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.doador-card {
+    background-color: #222;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.doador-card:hover {
+    transform: translateY(-5px);
+}
+
+.doador-card h3 {
+    color: #00ffff;
+    margin: 0 0 0.5rem 0;
+}
+
+.doador-card p {
+    margin: 0;
+    text-align: center;
+}
+
+footer {
+    background-color: #111;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+.contact-info {
+    text-align: center;
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+}
+
+@media (max-width: 600px) {
+    .doadores-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
 .bg-image {
     background-image: url(resources/banner.jpg);
     background-position: center;
@@ -74,6 +170,7 @@ body {
 
 .bg-image h2 {
     font-family: Zeniq;
+    letter-spacing: 2px;
     margin: 2rem 0;
     z-index: 3;
     position: relative;

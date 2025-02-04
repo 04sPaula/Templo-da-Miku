@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Agradecimentos - Santuário Miku</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDwfONqJ5P9qkuwBS9YML7MlROKJtVRTFE",
+            authDomain: "mikuproject-658c7.firebaseapp.com",
+            projectId: "mikuproject-658c7",
+            storageBucket: "mikuproject-658c7.firebasestorage.app",
+            messagingSenderId: "612426051624",
+            appId: "1:612426051624:web:b34242b63896d7817bc51d",
+            measurementId: "G-384C1RF60E"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        const doacoesRef = collection(db, 'doacoes');
+        const q = query(doacoesRef, orderBy('valorDoacao', 'desc'));
+        
+        onSnapshot(q, (snapshot) => {
+            const grid = document.getElementById('doadoresGrid');
+            grid.innerHTML = '';
+            
+            snapshot.forEach((doc) => {
+                const doacao = doc.data();
+                const card = document.createElement('div');
+                card.className = 'doador-card';
+                card.innerHTML = `
+                    <h3>${doacao.nomeDoador}</h3>
+                    <p>R$ ${parseFloat(doacao.valorDoacao).toFixed(2)}</p>
+                `;
+                grid.appendChild(card);
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html">Home</a>
+            <a href="agradecimentos.html">Agradecimentos</a>
+            <a href="#contato">Contato</a>
+        </div>
+    </nav>
+
+    <div class="bg-image">
+        <div>
+            <h2>Nossos Apoiadores</h2>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div id="doadoresGrid" class="doadores-grid"></div>
+    </div>
+
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" class="social-icon">
+                    <img src="resources/twitter.svg" alt="Twitter">
+                </a>
+                <a href="#" class="social-icon">
+                    <img src="resources/instagram.svg" alt="Instagram">
+                </a>
+            </div>
+            <div class="contact-info">
+                <p>Contato: exemplo@email.com</p>
+                <p>Tel: (11) 1234-5678</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
