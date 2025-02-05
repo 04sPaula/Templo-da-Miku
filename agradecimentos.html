@@ -10,7 +10,7 @@
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, collection, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDwfONqJ5P9qkuwBS9YML7MlROKJtVRTFE",
@@ -23,8 +23,9 @@
         };
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        
+        const estatisticasRef = doc(db, "estatisticas", "doacoes");
         const doacoesRef = collection(db, 'doacoes');
+        const META = 500000;
         const q = query(doacoesRef, orderBy('valorDoacao', 'desc'));
         
         onSnapshot(q, (snapshot) => {
@@ -42,6 +43,25 @@
                 grid.appendChild(card);
             });
         });
+
+        try {
+            const estatisticasSnap = await getDoc(estatisticasRef);
+
+            if (estatisticasSnap.exists()) {
+                const totalArrecadado = estatisticasSnap.data().totalArrecadado || 0;
+                console.log("Total carregado do Firestore:", totalArrecadado);
+
+                const percentual = (totalArrecadado / META) * 100;
+
+                document.getElementById("progress-text").innerText = 
+                    `Arrecadado: R$ ${totalArrecadado.toFixed(2)} (${percentual.toFixed(2)}%)`;
+                document.getElementById("progress").style.width = `${percentual}%`;
+            } else {
+                console.error("Documento 'doacoes' não encontrado!");
+            }
+        } catch (error) {
+            console.error("Erro ao buscar total arrecadado:", error);
+        }
     </script>
 </head>
 <body>
@@ -64,7 +84,7 @@
         <div class="progress-container">
             <div class="progress-text">
                 <h3>Meta: R$ 500.000,00</h3>
-                <p id="progress-text">Arrecadado: R$ 0,00 (0%)</p>
+                <p id="progress-text">Arrecadado:</p>
             </div>
             <div class="progress-bar">
                 <div id="progress" class="progress"></div>
