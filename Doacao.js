@@ -15,8 +15,6 @@ class Doacao {
         return {
             CARTAO: 'Cartao',
             PIX: 'Pix',
-            ESPECIE: 'Especie',
-            BOLETO: 'Boleto'
         };
     }
 
