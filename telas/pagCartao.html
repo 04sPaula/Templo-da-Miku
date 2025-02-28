@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento com Cartão - Santuário Miku</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { Timestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDwfONqJ5P9qkuwBS9YML7MlROKJtVRTFE",
+            authDomain: "mikuproject-658c7.firebaseapp.com",
+            projectId: "mikuproject-658c7",
+            storageBucket: "mikuproject-658c7.firebasestorage.app",
+            messagingSenderId: "612426051624",
+            appId: "1:612426051624:web:b34242b63896d7817bc51d",
+            measurementId: "G-384C1RF60E"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.db = db;
+        window.collection = collection;
+        window.addDoc = addDoc;
+        window.Timestamp = Timestamp;
+        window.updateDoc = updateDoc;
+        window.doc = doc;
+    </script>
+    <script src="pagamento-cartao.js" type="module"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html">Home</a>
+            <a href="agradecimentos.html">Agradecimentos</a>
+            <a href="#contato">Contato</a>
+        </div>
+    </nav>
+
+    <div class="bg-image2">
+        <div>
+            <h2>Pagamento com Cartão</h2>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <h1>Complete seu Pagamento</h1>
+        
+        <div class="donation-summary">
+            <h3>Resumo da Doação</h3>
+            <div class="donation-details">
+                <p><strong>Nome:</strong> <span id="nome-doador"></span></p>
+                <p><strong>Valor:</strong> R$ <span id="valor-doacao"></span></p>
+            </div>
+        </div>
+
+        <div class="card-payment-container">
+            <div class="card-container">
+                <div class="card-preview">
+                    <div class="card-front">
+                        <div class="card-number-display">**** **** **** ****</div>
+                        <div class="card-details">
+                            <div class="card-holder">Nome do Titular</div>
+                            <div class="card-expiry">MM/AA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="cardForm">
+                <div class="form-group">
+                    <label for="cardNumber">Número do Cartão</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                </div>
+
+                <div class="form-group">
+                    <label for="cardName">Nome do Titular</label>
+                    <input type="text" id="cardName" placeholder="Nome como está no cartão">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cardExpiry">Validade (MM/AA)</label>
+                        <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardCVV">CVV</label>
+                        <input type="text" id="cardCVV" placeholder="123" maxlength="3">
+                    </div>
+                </div>
+
+                <button type="submit" class="payment-button">Finalizar Pagamento</button>
+            </form>
+        </div>
+    </div>
+
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://x.com/cfm_miku_en" class="social-icon">
+                    <img src="resources/twitter.png" alt="Twitter">
+                </a>
+                <a href="https://www.instagram.com/cfm_mikustagram" class="social-icon">
+                    <img src="resources/instagram.png" alt="Instagram">
+                </a>
+            </div>
+            <div class="contact-info">
+                <p>Contato: crypton@exemplo.com</p>
+                <p>Tel: (01) 9 3939-3939</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
