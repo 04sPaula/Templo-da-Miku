@@ -35,8 +35,9 @@
         window.orderBy = orderBy;
         window.query = query;
     </script>
-    <script src="script.js" type="module"></script>
-
+    <script src="../scripts/script.js" type="module"></script>
+    <script src="../scripts/pagCartao.js" type="module"></script>
+    <script src="../scripts/pagPix.js" type="module"></script>
 </head>
 <body>
     <div class="bg-image">
@@ -72,7 +73,7 @@
             <input type="text" id="nomeDoador" placeholder="Digite seu nome" required>
         
             <label for="valorDoacao">Valor da Doação:</label>
-            <input type="number" id="valorDoacao" placeholder="Digite o valor" min="1" step="0.01" required>
+            <input type="number" id="valorDoacao" placeholder="Digite o valor" min="1" step="0.5" required>
         
             <label for="modoPagamento">Modo de Pagamento:</label>
             <select id="modoPagamento" required>
@@ -91,7 +92,7 @@
                 <th>Doador</th>
                 <th>Valor</th>
                 <th>Data</th>
-                <th>Modo Pagamento</th>
+                <th>Modo de Pagamento</th>
             </tr>
         </thead>
         <tbody id="corpoTabelaDoacoes"></tbody>
@@ -102,10 +103,10 @@
         <div class="footer-content">
             <div class="social-links">
                 <a href="https://x.com/cfm_miku_en" class="social-icon">
-                    <img src="resources/twitter.png" alt="Twitter">
+                    <img src="../resources/twitter.png" alt="Twitter">
                 </a>
                 <a href="https://www.instagram.com/cfm_mikustagram" class="social-icon">
-                    <img src="resources/instagram.png" alt="Instagram">
+                    <img src="../resources/instagram.png" alt="Instagram">
                 </a>
             </div>
             <div class="contact-info">
