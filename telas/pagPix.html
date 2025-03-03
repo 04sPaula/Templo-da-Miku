@@ -11,7 +11,7 @@
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, getDoc, setDoc, increment, collection, addDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { Timestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -33,6 +33,9 @@
         window.Timestamp = Timestamp;
         window.updateDoc = updateDoc;
         window.doc = doc;
+        window.getDoc = getDoc;
+        window.setDoc = setDoc;
+        window.increment = increment;
     </script>
     <script src="../scripts/script.js" type="module" defer></script>
     <script src="../scripts/pagPix.js" type="module" defer></script>
@@ -65,7 +68,7 @@
 
         <div class="pix-payment-container">
             <div class="pix-qrcode">
-                <img src="resources/qrcode-placeholder.png" alt="QR Code PIX">
+                <img src="../resources/qr-code.png" alt="QR Code PIX">
             </div>
 
             <div class="pix-info">

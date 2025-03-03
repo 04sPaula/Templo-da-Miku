@@ -1,4 +1,4 @@
-import Doacao from './doacao.js';
+import { getFirestore, collection, addDoc, updateDoc, doc, getDoc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -7,18 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyButton = document.getElementById('copyPix');
   const pixCode = document.getElementById('pixCode');
   
-  // Exibir os dados do doador
   document.getElementById('nome-doador').textContent = nomeDoador || 'N/A';
   document.getElementById('valor-doacao').textContent = valorDoacao || '0.00';
   
-  // Se não houver dados de doação, redirecionar para a página inicial
   if (!nomeDoador || !valorDoacao) {
     alert('Informações de doação não encontradas. Redirecionando para a página inicial.');
-    window.location.href = 'index.html';
+    window.location.href = '../telas/index.html';
     return;
   }
   
-  // Botão para copiar código PIX
   if (copyButton) {
     copyButton.addEventListener('click', function() {
       pixCode.select();
@@ -26,12 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Botão para confirmar pagamento
   const confirmButton = document.getElementById('confirmPayment');
   if (confirmButton) {
     confirmButton.addEventListener('click', async function() {
       try {
-        // Criar e submeter a doação
         const db = window.db;
         const doacoesRef = window.collection(db, 'doacoes');
         
@@ -42,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
           modoPagamento: 'Pix'
         });
         
-        // Atualizar estatísticas
         const estatisticasRef = window.doc(db, "estatisticas", "doacoes");
         try {
           const estatisticasDoc = await window.getDoc(estatisticasRef);
@@ -62,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('doador_modo');
         
         alert('Pagamento confirmado com sucesso! Obrigado pela doação.');
-        window.location.href = 'agradecimentos.html';
+        window.location.href = '../telas/agradecimentos.html';
       } catch (error) {
         console.error("Erro ao confirmar pagamento:", error);
         alert('Erro ao confirmar o pagamento. Por favor, tente novamente.');
